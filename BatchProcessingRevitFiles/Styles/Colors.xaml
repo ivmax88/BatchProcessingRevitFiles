@@ -1,0 +1,55 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <Color x:Key="main">#d300ff</Color>
+    <SolidColorBrush x:Key="mainBrush" Color="{StaticResource main}"/>
+    
+    <Color x:Key="main2">#c018e4</Color>
+    <SolidColorBrush x:Key="main2Brush" Color="{StaticResource main2}"/>
+    
+    <Color x:Key="main3">#b300d9</Color>
+    <SolidColorBrush x:Key="main3Brush" Color="{StaticResource main3}"/>
+    
+    <Color x:Key="main4">#e775ff</Color>
+    <SolidColorBrush x:Key="main4Brush" Color="{StaticResource main4}"/>
+    
+    <Color x:Key="main5">#f7d3ff</Color>
+    <SolidColorBrush x:Key="main5Brush" Color="{StaticResource main5}"/>
+    
+    
+
+    <Color x:Key="A">#00b2ff</Color>
+    <SolidColorBrush x:Key="ABrush" Color="{StaticResource A}"/>
+
+    <Color x:Key="A2">#18a6e4</Color>
+    <SolidColorBrush x:Key="A2Brush" Color="{StaticResource A2}"/>
+
+    <Color x:Key="A3">#0097d9</Color>
+    <SolidColorBrush x:Key="A3Brush" Color="{StaticResource A3}"/>
+
+    <Color x:Key="A4">#75d6ff</Color>
+    <SolidColorBrush x:Key="A4Brush" Color="{StaticResource A4}"/>
+
+    <Color x:Key="A5">#d3f2ff</Color>
+    <SolidColorBrush x:Key="A5Brush" Color="{StaticResource A5}"/>
+    
+
+
+    <Color x:Key="B">#ff8700</Color>
+    <SolidColorBrush x:Key="BBrush" Color="{StaticResource B}"/>
+
+    <Color x:Key="B2">#e48418</Color>
+    <SolidColorBrush x:Key="B2Brush" Color="{StaticResource B2}"/>
+
+    <Color x:Key="B3">#d97300</Color>
+    <SolidColorBrush x:Key="B3Brush" Color="{StaticResource B3}"/>
+
+    <Color x:Key="B4">#ffbe75</Color>
+    <SolidColorBrush x:Key="B4Brush" Color="{StaticResource B4}"/>
+
+    <Color x:Key="B5">#ffead3</Color>
+    <SolidColorBrush x:Key="B5Brush" Color="{StaticResource B5}"/>
+
+
+</ResourceDictionary>
