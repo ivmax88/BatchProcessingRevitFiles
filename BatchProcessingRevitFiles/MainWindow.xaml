@@ -15,7 +15,11 @@
         Deactivated="AppWindow_Deactivated"
         Activated="AppWindow_Activated"
         Title="Welcome, friend!" Height="600" Width="900">
-
+    
+    
+    <!--https://github.com/angelsix/fasetto-word-->
+    
+    
     <Window.Resources>
         <Style TargetType="{x:Type l:MainWindow}">
             <Setter Property="Template">
@@ -80,15 +84,13 @@
                                         <!-- Title -->
                                         <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
                                             <StackPanel>
-                                                <!--<TextBlock Margin="0,0,0,-5">
-                                                    <Run Text="W" Foreground="{StaticResource mainBrush}" />--><!--
-                                                    --><!--<Run Text="O" Foreground="{StaticResource ABrush}" />--><!--
-                                                    --><!--<Run Text="R" Foreground="{StaticResource BBrush}" />--><!--
-                                                    --><!--<Run Text="D" Foreground="{StaticResource mainBrush}" />
-                                                </TextBlock>-->
                                                 <TextBlock Text="Пакетная обработка файлов" Foreground="{StaticResource mainBrush}"
                                                            TextAlignment="Center" 
-                                                           FontWeight="DemiBold"/>
+                                                           FontWeight="DemiBold"
+                                                           FontFamily="{DynamicResource OpenSansSemiBold}"
+                                                           FontStyle="Italic"
+                                                           />
+
                                                 <TextBlock  TextAlignment="Center" FontWeight="Bold">
                                                     <Run Text="R" Foreground="{StaticResource mainBrush}" />
                                                     <Run Text="E" Foreground="{StaticResource ABrush}" />
@@ -133,9 +135,11 @@
     </WindowChrome.WindowChrome>
 
     <Grid Background="White"
-        
         >
+        <StackPanel>
+            
         
+        </StackPanel>
     </Grid>
 
 </Window>

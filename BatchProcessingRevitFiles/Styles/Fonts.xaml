@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <FontFamily x:Key="Awesome">/BatchProcessingRevitFiles;component/Fonts/#Font Awesome 5 Free Solid</FontFamily>
+    <FontFamily x:Key="OpenSans">/BatchProcessingRevitFiles;component/Fonts/#Open Sans</FontFamily>
+    <FontFamily x:Key="OpenSansLight">/BatchProcessingRevitFiles;component/Fonts/#Open Sans Light</FontFamily>
+
+
+
+</ResourceDictionary>

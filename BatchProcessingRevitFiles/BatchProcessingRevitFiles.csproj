@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\fa-solid-900.ttf" />
+    <None Remove="Fonts\OpenSans-Italic.ttf" />
+    <None Remove="Fonts\OpenSans-Light.ttf" />
+    <None Remove="Fonts\OpenSans-Regular.ttf" />
     <None Remove="Images\logo.png" />
     <None Remove="Styles\Colors.less" />
   </ItemGroup>
@@ -16,6 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Fonts\fa-solid-900.ttf" />
+    <Resource Include="Fonts\OpenSans-Italic.ttf" />
+    <Resource Include="Fonts\OpenSans-Light.ttf" />
+    <Resource Include="Fonts\OpenSans-Regular.ttf" />
     <Resource Include="Images\logo.png" />
     <Resource Include="Styles\Colors.less" />
   </ItemGroup>
@@ -26,6 +34,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Buttons.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Fonts.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
