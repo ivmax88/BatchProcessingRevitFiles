@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BatchProcessingRevitFiles
 {
@@ -13,12 +15,12 @@ namespace BatchProcessingRevitFiles
         /// <summary>
         /// The window this view model controls
         /// </summary>
-        private Window mWindow;
+        private readonly Window mWindow;
 
         /// <summary>
         /// The window resizer helper that keeps the window size correct in various states
         /// </summary>
-        private WindowResizer mWindowResizer;
+        private readonly WindowResizer mWindowResizer;
 
         /// <summary>
         /// The margin around the window to allow for a drop shadow
@@ -154,7 +156,7 @@ namespace BatchProcessingRevitFiles
         /// <summary>
         /// Default constructor
         /// </summary>
-        public MainViewModel(Window window)
+        public MainViewModel(Window window, IConfiguration configuration)
         {
             mWindow = window;
 
@@ -168,7 +170,11 @@ namespace BatchProcessingRevitFiles
             // Create commands
             MinimizeCommand = new RelayCommand(() => mWindow.WindowState = WindowState.Minimized);
             MaximizeCommand = new RelayCommand(() => mWindow.WindowState ^= WindowState.Maximized);
-            CloseCommand = new RelayCommand(() => mWindow.Close());
+            CloseCommand = new RelayCommand(() =>
+            {
+                mWindow.Close();
+
+            });
             MenuCommand = new RelayCommand(() => SystemCommands.ShowSystemMenu(mWindow, GetMousePosition()));
 
             // Fix window resize issue
@@ -235,5 +241,6 @@ namespace BatchProcessingRevitFiles
 
 
         #endregion
+
     }
 }

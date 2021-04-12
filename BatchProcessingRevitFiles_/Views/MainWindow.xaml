@@ -14,12 +14,13 @@
         MinHeight="{Binding WindowMinimumHeight}"
         Deactivated="AppWindow_Deactivated"
         Activated="AppWindow_Activated"
-        Title="Welcome, friend!" Height="600" Width="900">
-    
-    
+        Height="600" Width="900"
+        >
+
+
     <!--https://github.com/angelsix/fasetto-word-->
-    
-    
+     
+
     <Window.Resources>
         <Style TargetType="{x:Type l:MainWindow}">
             <Setter Property="Template">
@@ -77,39 +78,50 @@
                                         </Grid.ColumnDefinitions>
 
                                         <!-- Icon -->
-                                            <Button  Style="{StaticResource SystemIconButton}" Command="{Binding MenuCommand}">
-                                                <Image Source="/Images/logo.png"/>
-                                            </Button>
+                                        <Button  Style="{StaticResource SystemIconButton}" Command="{Binding MenuCommand}">
+                                            <Image Source="/Images/logo.png"/>
+                                        </Button>
 
                                         <!-- Title -->
                                         <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
                                             <StackPanel>
                                                 <TextBlock Text="Пакетная обработка файлов" Foreground="{StaticResource mainBrush}"
                                                            TextAlignment="Center" 
+                                                           FontFamily="{StaticResource OpenSans}"
                                                            FontWeight="DemiBold"
-                                                           FontFamily="{DynamicResource OpenSansSemiBold}"
-                                                           FontStyle="Italic"
                                                            />
 
                                                 <TextBlock  TextAlignment="Center" FontWeight="Bold">
-                                                    <Run Text="R" Foreground="{StaticResource mainBrush}" />
-                                                    <Run Text="E" Foreground="{StaticResource ABrush}" />
-                                                    <Run Text="V" Foreground="{StaticResource BBrush}" />
-                                                    <Run Text="I" Foreground="{StaticResource ABrush}" />
-                                                    <Run Text="T" Foreground="{StaticResource mainBrush}" />
+                                                    <Run Text="R" Foreground="{StaticResource mainBrush}" FontFamily="{StaticResource OpenSans}"/>
+                                                    <Run Text="E" Foreground="{StaticResource ABrush}" FontFamily="{StaticResource OpenSans}"/>
+                                                    <Run Text="V" Foreground="{StaticResource BBrush}" FontFamily="{StaticResource OpenSans}"/>
+                                                    <Run Text="I" Foreground="{StaticResource ABrush}" FontFamily="{StaticResource OpenSans}"/>
+                                                    <Run Text="T" Foreground="{StaticResource mainBrush}" FontFamily="{StaticResource OpenSans}"/>
                                                 </TextBlock>
                                             </StackPanel>
                                         </Viewbox>
 
                                         <!-- Window Buttons -->
                                         <StackPanel Grid.Column="2" Orientation="Horizontal">
-                                            <Button Command="{Binding MinimizeCommand}" Style="{StaticResource WindowControlButton}" Content="_" />
-                                            <Button Command="{Binding MaximizeCommand}" Style="{StaticResource WindowControlButton}" Content="[ ]" />
-                                            <Button Command="{Binding CloseCommand}" Style="{StaticResource WindowCloseButton}" Content="X" />
+                                            <Button Command="{Binding MinimizeCommand}" 
+                                                    Style="{StaticResource WindowControlButton}" 
+                                                    Content="_" 
+                                                    FontFamily="{StaticResource OpenSans}" 
+                                                    />
+                                            <Button Command="{Binding MaximizeCommand}" 
+                                                    Style="{StaticResource WindowControlButton}" 
+                                                    Content="[ ]" 
+                                                    FontFamily="{StaticResource OpenSans}"
+                                                    />
+                                            <Button Command="{Binding CloseCommand}" 
+                                                    Style="{StaticResource WindowCloseButton}" 
+                                                    Content="X" 
+                                                    FontFamily="{StaticResource OpenSans}"
+                                                    />
                                         </StackPanel>
 
                                     </Grid>
- 
+
                                     <!-- Page Content -->
                                     <Border Grid.Row="1" Padding="{Binding InnerContentPadding}" ClipToBounds="True">
                                         <ContentPresenter Content="{TemplateBinding Content}" />
@@ -134,12 +146,20 @@
             />
     </WindowChrome.WindowChrome>
 
-    <Grid Background="White"
-        >
-        <StackPanel>
-            
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         
-        </StackPanel>
+        
+        <l:CommandsPanel HorizontalAlignment="Left"/>
+
+        <l:RevitFileListControl Grid.Row="1"
+                                DataContext="{x:Static l:RevitFileListViewModel.Instance}"
+                                />
+
+
     </Grid>
 
 </Window>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Assembly>BatchProcessingRevitFiles/BatchProcessingRevitFiles_RevitPlugin.dll</Assembly>
+		<ClientId>BD0EB95D-0820-4749-B3A4-177AD965ADCE</ClientId>
+		<FullClassName>BatchProcessingRevitFiles_RevitPlugin.Application</FullClassName>
+		<Name>BatchProcessingRevitFiles</Name>
+		<VendorId>Ivanov</VendorId>
+		<VendorDescription>Ivanov</VendorDescription>
+	</AddIn>
+</RevitAddIns>
