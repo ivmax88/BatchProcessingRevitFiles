@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:l="clr-namespace:BatchProcessingRevitFiles"
+        xmlns:a="clr-namespace:iAnimation;assembly=iAnimation"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance l:MainViewModel, d:IsDesignTimeCreatable=False}"
         WindowStyle="None"
@@ -19,7 +20,7 @@
 
 
     <!--https://github.com/angelsix/fasetto-word-->
-     
+
 
     <Window.Resources>
         <Style TargetType="{x:Type l:MainWindow}">
@@ -147,17 +148,34 @@
     </WindowChrome.WindowChrome>
 
     <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        
-        <l:CommandsPanel HorizontalAlignment="Left"/>
+        <l:ScritpLoadView HorizontalAlignment="Center"
+                          VerticalAlignment="Top"
+                          DataContext="{x:Static l:ScriptLoadViewModel.Instance}"
+                          Panel.ZIndex="3"
+                          a:AnimateSlindeInAndFadeFromTop.Value="{Binding ScriptLoadVisibility}"
+                          a:AnimationTime.Value ="0.4"
+                          />
 
-        <l:RevitFileListControl Grid.Row="1"
-                                DataContext="{x:Static l:RevitFileListViewModel.Instance}"
+        <Grid  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="19*"/>
+                <ColumnDefinition Width="71*"/>
+            </Grid.ColumnDefinitions>
+            <l:CommandsPanel HorizontalAlignment="Left"
+                             VerticalAlignment="Top"
+                             DataContext="{x:Static l:CommandsPanelViewModel.Instance}"
+                             Panel.ZIndex="1"
+                             a:AnimateSlindeInAndFadeFromLeft.Value="{Binding CommandsVisiblity}"
+                             a:AnimationTime.Value ="0.4" Grid.ColumnSpan="2"
+                             />
+
+            <l:RevitFileListControl
+                                    DataContext="{x:Static l:RevitFileListViewModel.Instance}"
+                                    Panel.ZIndex="1"
+                                    Margin="0 70 0 0" Grid.ColumnSpan="2"
                                 />
+        </Grid>
+
 
 
     </Grid>

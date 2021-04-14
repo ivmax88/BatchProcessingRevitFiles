@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="BatchProcessingRevitFiles.CommandsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BatchProcessingRevitFiles"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance local:CommandsPanelViewModel, d:IsDesignTimeCreatable=True}"
+             d:DesignHeight="80" d:DesignWidth="600">
+
+    <Border 
+            CornerRadius="20"
+            Padding="10"
+            Margin="10"
+            BorderThickness="2"
+            BorderBrush="{StaticResource B4Brush}"
+            >
+        
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <Button Content="&#xf04b;"
+                    Margin="10 0"
+                    VerticalAlignment="Top"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    Foreground="{StaticResource main4Brush}"
+                    Style="{StaticResource IconGrowButton}"
+                    FontFamily="{StaticResource Awesome}" 
+                    Command="{Binding Run}"
+                    ToolTip="Запустить обработку файлов"
+                    />
+            <Button Content="&#xf574;"
+                    Margin="10 0"
+                    VerticalAlignment="Top"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    Foreground="{StaticResource main4Brush}"
+                    Style="{StaticResource IconGrowButton}"
+                    FontFamily="{StaticResource Awesome}" 
+                    Command="{Binding LoadFile}"
+                    ToolTip="Выбрать файл"
+                    />
+            <Button Content="&#xf65e;"
+                    Margin="10 0"
+                    VerticalAlignment="Top"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    Foreground="{StaticResource main4Brush}"
+                    Style="{StaticResource IconGrowButton}"
+                    FontFamily="{StaticResource Awesome}" 
+                    Command="{Binding LoadFolder}"
+                    ToolTip="Выбрать папку с файлами"
+                    />
+            <Button Content="&#xf233;"
+                    Margin="10 0"
+                    VerticalAlignment="Top"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    Foreground="{StaticResource main4Brush}"
+                    Style="{StaticResource IconGrowButton}"
+                    FontFamily="{StaticResource Awesome}" 
+                    Command="{Binding ParseRevitServer}"
+                    ToolTip="Распарсить RevitServer"
+                    />
+            <Button Content="&#xf1c9;"
+                    Margin="10 0"
+                    VerticalAlignment="Top"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    Foreground="{StaticResource main4Brush}"
+                    Style="{StaticResource IconGrowButton}"
+                    FontFamily="{StaticResource Awesome}" 
+                    Command="{Binding ShowCodeFileView}"
+                    ToolTip="Выбрать файл с кодом"
+                    />
+        </StackPanel>
+    </Border>
+</UserControl>

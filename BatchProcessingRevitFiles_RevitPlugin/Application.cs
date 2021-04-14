@@ -12,6 +12,7 @@ namespace BatchProcessingRevitFiles_RevitPlugin
 {
     public class Application : IExternalApplication
     {
+        private HubConnection connection;
         private IHubProxy myHub;
         private Assembly assembly;
         private Document doc;
@@ -26,14 +27,15 @@ namespace BatchProcessingRevitFiles_RevitPlugin
         {
             try
             {
-                var connection = new HubConnection("http://127.0.0.1:8088/");
+                connection = new HubConnection("http://127.0.0.1:49101/");
                 myHub = connection.CreateHubProxy("MyHub");
 
                 var connect = connection.Start();
                 connect.Wait();
 
                 application.ControlledApplication.DocumentOpening += ControlledApplication_DocumentOpening;
-                application.ControlledApplication.DocumentOpened += ControlledApplication_DocumentOpened; ;
+                application.ControlledApplication.DocumentOpened += ControlledApplication_DocumentOpened;
+                
             }
             catch (Exception)
             {

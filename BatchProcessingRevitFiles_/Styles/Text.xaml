@@ -1,0 +1,49 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="{x:Type TextBox}" x:Key="BaseStyle">
+    </Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="BaseStyleTextBock">
+        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="TextTrimming" Value="None"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontFamily" Value="{StaticResource OpenSans}"/>
+    </Style>
+    
+    <!--standart textbox-->
+    <Style  TargetType="{x:Type TextBox}" x:Key="StandartTextBox" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="FontFamily" Value="{StaticResource OpenSans}"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Background" Value="{StaticResource main5Brush}"/>
+        <Setter Property="Foreground" Value="{StaticResource A2Brush}"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border BorderThickness="1"
+                            x:Name="border"
+                            CornerRadius="3"
+                            BorderBrush="{StaticResource A2Brush}"
+                            Background="{TemplateBinding Background}"
+                            >
+                        <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="StandartTextBlock" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseStyleTextBock}">
+       
+    </Style>
+    
+
+
+</ResourceDictionary>
