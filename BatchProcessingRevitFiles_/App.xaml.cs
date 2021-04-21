@@ -18,7 +18,7 @@ namespace BatchProcessingRevitFiles
             string url = "http://127.0.0.1:49101";
 
             WebApp.Start<Startup>(url);
-
+            var c = BatchProcessingRevitFiles.Startup.Instance.Configurations;
             var view = BatchProcessingRevitFiles.Startup.Instance.Provider.GetRequiredService<MainWindow>();
             view.Show();
         }

@@ -40,6 +40,7 @@ namespace BatchProcessingRevitFiles
         public string PathToLibraries { get; set; }
         public string PathToScriptFile { get; set; }
         public bool IsDll { get; set; } = true;
+        public string PathToLibrariesForDll { get; set; }
         public string PathToDll { get; set; }
         public Assembly AssemblyToExecute { get; private set; }
 
@@ -50,6 +51,7 @@ namespace BatchProcessingRevitFiles
         public RelayCommand GetScriptFile { get; set; }
         public RelayCommand Compile { get; set; }
         public RelayCommand LoadReferencesFolder { get; set; }
+        public RelayCommand LoadReferencesFolderForDll { get; set; }
         public RelayCommand LoadDll { get; set; }
         public RelayCommand Close => new RelayCommand(() =>
         {
@@ -70,13 +72,17 @@ namespace BatchProcessingRevitFiles
             PathToCompileScript = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\script";
             PathToScriptFile = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\script.cs";
             PathToDll = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\script.dll";
-            PathToLibraries = $@"{Directory.GetCurrentDirectory()}\Data\References\2019";
+            PathToLibraries = $@"{Directory.GetCurrentDirectory()}\Data\References\{CommandsPanelViewModel.Instance.RevitVersion}";
+            PathToLibrariesForDll = $@"{Directory.GetCurrentDirectory()}\Data\References\{CommandsPanelViewModel.Instance.RevitVersion}";
             Compile = new RelayCommand(CompileCommand);
             LoadReferencesFolder = new RelayCommand(LoadReferencesFolderCommand);
+            LoadReferencesFolderForDll = new RelayCommand(LoadReferencesFolderForDllCommand);
             LoadDll = new RelayCommand(LoadDllCommand);
             GetReadyScriptFolder = new RelayCommand(GetReadyScriptFolderCommand);
             GetScriptFile = new RelayCommand(GetScriptFileCommand);
         }
+
+       
 
 
         #endregion
@@ -123,6 +129,27 @@ namespace BatchProcessingRevitFiles
             }
         }
 
+
+        /// <summary>
+        /// Открыват папку со связями для готового dll
+        /// </summary>
+
+        private void LoadReferencesFolderForDllCommand()
+        {
+            var open = new FolderBrowserDialog();
+            open.RootFolder = Environment.SpecialFolder.Desktop;
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                var dir = new DirectoryInfo(open.SelectedPath);
+                references = dir.GetFiles("*.dll", SearchOption.AllDirectories);
+                PathToLibrariesForDll = open.SelectedPath;
+            }
+        }
+
+
+        /// <summary>
+        /// Компилирует скрипт из текстового файла
+        /// </summary>
         private void CompileCommand()
         {
             Directory.CreateDirectory(PathToCompileScript);
@@ -130,7 +157,12 @@ namespace BatchProcessingRevitFiles
             var codeProvider = new CSharpCodeProvider();
             var parameters = new CompilerParameters
             {
-                OutputAssembly = GetFileName()
+                OutputAssembly = GetFileName(),
+                WarningLevel = 3,
+
+                // Set whether to treat all warnings as errors.
+                TreatWarningsAsErrors = false,
+                CompilerOptions = "/optimize"
             };
 
             if (references == null)
@@ -155,11 +187,13 @@ namespace BatchProcessingRevitFiles
                                 ", '" + CompErr.ErrorText + ";" +
                                 Environment.NewLine + Environment.NewLine;
                 }
-                MessageBox.Show(mess);
+                //MessageBox.Show(mess);
+                new MessageBoxDialogViewModel(mess);
             }
             else
             {
-                MessageBox.Show("Компиляция скрипта прошла успешно");
+                new MessageBoxDialogViewModel("Компиляция скрипта прошла успешно");
+                //MessageBox.Show("Компиляция скрипта прошла успешно");
                 foreach (var item in RevitFileListViewModel.Instance.Items)
                 {
                     item.AssemblyToExecute = result.CompiledAssembly;
@@ -188,7 +222,9 @@ namespace BatchProcessingRevitFiles
             return v;
         }
 
-
+        /// <summary>
+        /// Загружает готовый dll
+        /// </summary>
         private void LoadDllCommand()
         {
             var open = new Microsoft.Win32.OpenFileDialog();
@@ -207,9 +243,10 @@ namespace BatchProcessingRevitFiles
                 }
                 AssemblyToExecute = assembly;
 
-                MessageBox.Show("Файл принят");
+                new MessageBoxDialogViewModel("Файл принят");
+                //MessageBox.Show("Файл принят");
             }
-           
+
         }
 
         #endregion

@@ -14,8 +14,6 @@ namespace BatchProcessingRevitFiles
     /// </summary>
     public class CommandsPanelViewModel : ViewModelBase
     {
-        private FileInfo[] references;
-
         #region Singelton
 
         private static CommandsPanelViewModel instance;
@@ -44,7 +42,7 @@ namespace BatchProcessingRevitFiles
         #endregion
 
         #region Public properties
-
+        public int RevitVersion { get; set; } = 2019;
         public bool CommandsVisiblity { get; set; } = true;
         #endregion
 

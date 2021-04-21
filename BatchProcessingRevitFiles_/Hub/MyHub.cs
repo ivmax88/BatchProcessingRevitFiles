@@ -29,7 +29,8 @@ namespace BatchProcessingRevitFiles
 
         public void SendError(int id, string error)
         {
-            MessageBox.Show(error);
+            var item = RevitFileListViewModel.Instance.Items.ToList().FirstOrDefault(x => x.ProcessId == id);
+            item.AddError( new RevitError() { Error = error , ErrorTime = DateTime.Now});
         }
 
         public void SendStatus(int id, Status status)
@@ -55,7 +56,8 @@ namespace BatchProcessingRevitFiles
                 case Status.RevitFileOpening:
                     break;
                 case Status.RevitFileOpened:
-                    Clients.Caller.LoadScript(item.AssemblyToExecute.Location);
+                    var pathToReferences = ScriptLoadViewModel.Instance.IsDll ? ScriptLoadViewModel.Instance.PathToLibrariesForDll : ScriptLoadViewModel.Instance.PathToLibraries;
+                    Clients.Caller.LoadScript(item.AssemblyToExecute.Location, pathToReferences);
                     break;
                 case Status.ScriptStarted:
                     break;

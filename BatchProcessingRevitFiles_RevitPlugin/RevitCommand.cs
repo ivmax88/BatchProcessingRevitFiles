@@ -18,7 +18,6 @@ namespace BatchProcessingRevitFiles_RevitPlugin
         private readonly Autodesk.Revit.UI.ExternalEvent externalEvent;
         private readonly IHubProxy myHub;
         private Action action;
-        private bool skipFailures;
         private string docTitle;
 
         public RevitCommand(IHubProxy myHub)
@@ -36,26 +35,19 @@ namespace BatchProcessingRevitFiles_RevitPlugin
             try
             {
 
-                if (skipFailures)
-                    app.Application.FailuresProcessing += Application_FailuresProcessing;
+                if (!docTitle.StartsWith("BatchProcessingRevitFiles"))
+                {
 
+                }
                 action();
 
-                if (skipFailures)
-                    app.Application.FailuresProcessing -= Application_FailuresProcessing;
-
-
-                if(!docTitle.StartsWith("BatchProcessingRevitFiles2019"))
+                if (!docTitle.StartsWith("BatchProcessingRevitFiles"))
                     myHub.Invoke("SendStatus", Process.GetCurrentProcess().Id, Status.ScriptFinished);
 
             }
             catch (Exception ex)
             {
-                if (skipFailures)
-                    app.Application.FailuresProcessing -= Application_FailuresProcessing;
-
-                myHub.Invoke("SendError", Process.GetCurrentProcess().Id, ex.Message);
-
+                myHub.Invoke("SendError", Process.GetCurrentProcess().Id, string.Concat(ex.Message, Environment.NewLine, ex.StackTrace));
             }
         }
 
@@ -71,10 +63,9 @@ namespace BatchProcessingRevitFiles_RevitPlugin
             }
         }
 
-        public void Run(Action action,  bool skipFailures, string docTitle)
+        public void Run(Action action, string docTitle)
         {
             this.action = action;
-            this.skipFailures = skipFailures;
             this.docTitle = docTitle;
             externalEvent.Raise();
         }

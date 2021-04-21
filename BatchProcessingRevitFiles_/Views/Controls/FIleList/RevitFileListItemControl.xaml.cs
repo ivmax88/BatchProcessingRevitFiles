@@ -23,6 +23,7 @@ namespace BatchProcessingRevitFiles
         public RevitFileListItemControl()
         {
             InitializeComponent();
+            
         }
     }
 }

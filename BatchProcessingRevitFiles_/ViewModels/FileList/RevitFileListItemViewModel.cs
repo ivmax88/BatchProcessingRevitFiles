@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -21,15 +22,16 @@ namespace BatchProcessingRevitFiles
         
         public RevitFileListItemViewModel()
         {
-
         }
 
         internal void RunProcess()
         {
-            var file = new DirectoryInfo(Directory.GetCurrentDirectory()).GetFiles("BatchProcessingRevitFiles2019.rvt", SearchOption.AllDirectories).ToList().FirstOrDefault();
-            process = Process.Start(@"C:\Program Files\Autodesk\Revit 2019\Revit.exe", file.FullName);
+            var file = new DirectoryInfo(Directory.GetCurrentDirectory()).GetFiles($"BatchProcessingRevitFiles{CommandsPanelViewModel.Instance.RevitVersion}.rvt", SearchOption.AllDirectories).ToList().FirstOrDefault();
+            process = Process.Start(Startup.Instance.Configurations[$"RevitPath:{CommandsPanelViewModel.Instance.RevitVersion}"], file.FullName);
             ProcessId = process.Id;
             Status = Status.RevitStarting;
+
+            ClearErorrs();
         }
 
         internal void KillRevit()

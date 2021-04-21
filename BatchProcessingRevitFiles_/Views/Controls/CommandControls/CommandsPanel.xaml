@@ -72,6 +72,10 @@
                     Command="{Binding ShowCodeFileView}"
                     ToolTip="Выбрать файл с кодом"
                     />
+            <TextBox Text="{Binding RevitVersion, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource StandartTextBox}"
+                     ToolTip="Версия ревит. Пути к программам задаются в файле appsettings.json"
+                     />
         </StackPanel>
     </Border>
 </UserControl>
